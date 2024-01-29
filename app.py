@@ -26,18 +26,20 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 import seaborn as sns
 
 # Navigation bar
-check = st.sidebar.radio("My Project", ('About', 'Team', 'ML - Modeling'))
+check = st.sidebar.radio("MENU ", ('About', 'Team', 'ML - Modeling'))
 if check == 'About':
     # Page title
-    st.title('Stock price prediction')
+    st.title('HDFC STOCK PRICE FORECASTING',)
 
     # Image
-    # st.image('./stock_price.jpeg')
+    st.image('.\OIP.jpeg',width=300)
     st.write('-------')
 
     st.subheader('1. Introduction')
@@ -70,32 +72,29 @@ if check == 'About':
 
 if check == 'Team':
     st.title('My TEAM')
-    # st.image('./team_work_image.jpg')
+    st.image('./team.jpg',width=400)
     st.subheader('Team details')
     st.text("""
     Group number     :   02
     
-    Group Members    :   07""")
+    Group Members    :   07
     
-#     Names of Team members:
+        
+     Names of Team members:
     
-#     1. Mr. Abhijit Chandrakant Raut
-    
-#     2. Ms. Anjali Awadhesh Pal
-    
-#     3. Mohammad Riza Amanathussain Sanadi
-    
-#     4. Ms. Samiksha Shirish Hate
-    
-#     5. Mr. Tumma Shivkumar Ashokrao
-    
-#     6. Mr. Umesh
-    
-#     7. Ms. Vidya Surbhi
-#     """)
+  1. Mr. Suprith R Korishettar
+  2. Mr. S.Madheswaran
+  3. Mr. S.Nitish
+  4. Mr. K.Mohmmad Kaif
+  5. Mr. Muhdshamnas
+  6. Mr. Ch.Kumar Narasimha
+
+  
+
+   """)
 
 if check == 'ML - Modeling':
-    st.subheader("HDFC stock price prediction")
+    st.subheader("HDFC STOCK PRICE FORECASTING")
     st.write('---')
     section = st.sidebar.radio('Model building', ['Know your data', 'Clean the Data', 'Data Stats',
                                                   'Graph the data', 'ARIMA model', 'Visualization of Results'])
@@ -196,6 +195,9 @@ if check == 'ML - Modeling':
         
         fig1 = sns.histplot(data)
         st.pyplot(fig1)
+        
+        fig2= plt.plot(data['Close'])
+        st.pyplot(fig2)
 
         st.markdown('Chart of Close price over time')
         st.line_chart(model_data, y='Close')
@@ -216,9 +218,8 @@ if check == 'ML - Modeling':
         
         Close price:
         1. Line plot of Close price shows uptrend and no observable patterns.
-        2. Raise in price of stock is more rigorous between 2020 to 2022.
-        3. Significant fall in 2023 can be observed.
-        4. Overall price of stock shows uptrend.
+        2. Raise in price of stock is more rigorous between 2020 to 2022
+        3. Overall price of stock shows uptrend.
         """)
 
     # Model building
